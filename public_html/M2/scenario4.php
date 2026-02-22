@@ -1,4 +1,4 @@
-<?php
+<?php 
 // copilot: disable
 // @ts-nocheck
 require_once "base.php";

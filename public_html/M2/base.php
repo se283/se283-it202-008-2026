@@ -1,4 +1,4 @@
-<?php
+<?php 
 /* Don't edit this file directly. Instead, edit the problem files in the same directory. */
 function printScenario1ArrayInfo($arr, $arrayNumber) {
  
