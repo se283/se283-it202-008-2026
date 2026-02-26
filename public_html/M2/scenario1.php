@@ -3,7 +3,7 @@
 // @ts-nocheck
 require_once "base.php";
 
-$ucid = "mt85"; // <-- set your ucid
+$ucid = "se283"; // <-- set your ucid
 
 // Don't edit the arrays below, they are used to test your code
 $array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -28,7 +28,36 @@ function printOdds($arr, $arrayNumber)
     $output_result = "";
     // Start Solution Edits
     // set solution to $output_result variable
-   
+    /*
+    UCID: se283
+    Date: 2/22/2026 
+
+    Plan
+    - Create a for loop that iterate over an array, check if each value in the array is an odd value, then add those values to the $output_result variable 
+
+    */
+
+    // Create a temporary array to store odd numbers
+    $odd_numbers = array();
+
+    // Create a for loop that reiterates through an array ($arr) 
+    for ($i = 0; $i < count($arr); $i++) { // If a value is an odd value, add it to the $output_result variable
+        
+        // Check if a value in an array is an odd value or not using the modulus operator (%)
+        if ($arr[$i] % 2 != 0) {  
+
+            // if a value in an array is an odd value, the odd value is stored into the $odd_numbers array
+            $odd_numbers[] = $arr[$i]; 
+        }
+ 
+    }
+
+    // Use implode to join the odd numbers into a single line, separated by ", "
+    $output_result = implode(", ", $odd_numbers);
+
+    
+
+
     // End Solution Edits
     printScenario1Output($output_result);
     echo "</div>";
