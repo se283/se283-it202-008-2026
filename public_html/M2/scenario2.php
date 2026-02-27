@@ -3,7 +3,7 @@
 // @ts-nocheck
 require_once "base.php";
 
-$ucid = "mt85"; // <-- set your ucid
+$ucid = "se283"; // <-- set your ucid
 
 // Don't edit the arrays below, they are used to test your code
 $array1 = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
@@ -30,11 +30,29 @@ function sumValues($arr, $arrayNumber)
 
     $total = 0;
     // Start Solution Edits
-    // Solve Challenge 1 here: Sum all values
+    /*
+    UCID: se283
+    Date: 2/22/2026 
 
+    Plan
+    - Challenge 1: Create a for loop that iterate over an array, add each value in the array to the 'total' variable
+    - Challenge 2: Use the number_format() to reassign the 'modifiedTotal' variable the value of the 'total' variable but formatted to 2 decimal places
 
+    */
+
+    // Solve Challenge 1 here: Sum all values 
+    // Create a for loop that reiterates through an array ($arr) 
+    for ($i = 0; $i < count($arr); $i++) { 
+        
+        // Add a value from the array into the $total variable
+        $total += $arr[$i];
+    }
+    
     // Solve Challenge 2 here: Format to 2 decimal places
-    $modifiedTotal = "?";
+    $modifiedTotal = "?"; 
+     // Use the number_format() to reassign the 'modifiedTotal' variable the value of the 'total' variable but formatted to 2 decimal places 
+    $modifiedTotal = number_format($total, 2);
+
 
     // End Solution Edits
     printScenario2Output($total, $modifiedTotal);
