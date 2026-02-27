@@ -41,7 +41,7 @@ function printOdds($arr, $arrayNumber)
     $odd_numbers = array();
 
     // Create a for loop that reiterates through an array ($arr) 
-    for ($i = 0; $i < count($arr); $i++) { // If a value is an odd value, add it to the $output_result variable
+    for ($i = 0; $i < count($arr); $i++) { 
         
         // Check if a value in an array is an odd value or not using the modulus operator (%)
         if ($arr[$i] % 2 != 0) {  
