@@ -3,7 +3,7 @@
 // @ts-nocheck
 require_once "base.php";
 
-$ucid = "mt85"; // <-- set your ucid
+$ucid = "se283"; // <-- set your ucid
 
 // Don't edit the arrays below, they are used to test your code
 $array1 = [42, -17, 89, -256, 1024, -4096, 50000, -123456];
@@ -28,6 +28,42 @@ function bePositive($arr, $arrayNumber)
 
     $output = array_fill(0, count($arr), null); // Initialize output array
     // Start Solution Edits
+    /*
+    UCID: se283
+    Date: 2/22/2026 
+
+    Plan
+    - Challenge 1: Create a for-loop that iterate over an array, and make each value in the array positive by turning each value into its absolute value
+    - Challenge 2: Inside the same for-loop from Challenge 1, get the original data type of each value of the array and then convert the positive value back to their original data type through if and elseif statements
+
+    */
+    
+    // Challenge 1: Make each value positive
+        // Create an array to store the values turned positive
+    $posArr = array(); 
+        // Create a for loop that reiterates through an array ($arr) 
+    for ($i = 0; $i < count($arr); $i++) { 
+        
+        // Turn a value from the array into their absolute value and add them into the array for positive arrays
+        $posArr[$i] = abs($arr[$i]); 
+
+    // Challenge 2: Convert the values back to their original data type and assign it to the proper slot in the `output` array
+        // Get the original data type (integer, double/float, string, etc.)
+        $originalType = gettype($arr[$i]);
+
+        // Cast the positive value back to the original type using if and elseif statements depending on which data type
+        if ($originalType == "integer") {
+            $output[$i] = (int)$posArr[$i];
+        } elseif ($originalType == "double") { // PHP uses "double" for floats in gettype()
+            $output[$i] = (float)$posArr[$i];
+        } elseif ($originalType == "string") {
+            $output[$i] = (string)$posArr[$i];
+        } else {
+            $output[$i] = $posArr[$i];
+        }
+        
+    }
+
     
 
     // End Solution Edits
