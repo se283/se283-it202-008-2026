@@ -3,7 +3,7 @@
 // @ts-nocheck
 require_once "base.php";
 
-$ucid = "mt85"; // <-- set your ucid
+$ucid = "se283"; // <-- set your ucid
 
 // Don't edit the arrays below, they are used to test your code
 $array1 = ["hello world!", "php programming", "special@#$%^&characters", "numbers 123 456", "mIxEd CaSe InPut!"];
@@ -35,6 +35,44 @@ function transformText($arr, $arrayNumber) {
         // Step 1: sketch out plan using comments (include ucid and date)
         // Step 2: Add/commit your outline of comments (required for full credit)
         // Step 3: Add code to solve the problem (add/commit as needed)
+
+        /*
+        UCID: se283
+        Date: 2/22/2026 
+
+        Plan
+        - Challenge 1: Use preg_replace() to remove non-alphanumeric characters, leaving only uppercase and lowercase alphabet, numbers, and spaces
+        - Challenge 2: Lowercase everything first, then use ucwords for Title Case
+        - Challenge 3: Use trim() for ends and preg_replace to collapse multiple internal spaces
+        - Challenge 4: Calculate middle index; use substr to grab index-1, index, and index+1 if length >= 3
+
+        */
+
+        // Challenge 1: Remove non-alphanumeric characters except spaces
+            // Use preg_replace to keep only a-z, A-Z, 0-9, and spaces
+        $cleaned = preg_replace("/[^a-zA-Z0-0\s]/", "", $text);
+
+        // Challenge 2: Convert text to Title Case
+            // Lowercase first to handle "mIxEd" cases correctly
+        $titled = ucwords(strtolower($cleaned));
+
+        // Challenge 3: Remove leading/trailing spaces and remove duplicate spaces between words
+        $noExtraSpaces = preg_replace("/\s+/", " ", trim($titled)); 
+
+        // Result 1-3: Assign final phrase to `placeholderForModifiedPhrase`
+        $placeholderForModifiedPhrase = $noExtraSpaces;
+
+        // Challenge 4 (extra credit): Extract up to middle 3 characters (beginning starts at middle of phrase, exclude the first and last character for shorter phrases, effectively middle index +/- 1)
+        $len = strlen($placeholderForModifiedPhrase);
+        if ($len >= 3) {
+            $mid = floor($len / 2);
+            // Grab 3 chars starting from one before the middle and assign result to 'placeholderForMiddleCharacters'
+            $placeholderForMiddleCharacters = substr($placeholderForModifiedPhrase, $mid - 1, 3);
+        } else {
+            // If not enough characters in a word, instead assign "Not enough characters" to `placeholderForMiddleCharacters`
+            $placeholderForMiddleCharacters = "Not enough characters";
+        }
+
 
         // End Solution Edits
     
