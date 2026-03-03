@@ -50,7 +50,7 @@ function transformText($arr, $arrayNumber) {
 
         // Challenge 1: Remove non-alphanumeric characters except spaces
             // Use preg_replace to keep only a-z, A-Z, 0-9, and spaces
-        $cleaned = preg_replace("/[^a-zA-Z0-0\s]/", "", $text);
+        $cleaned = preg_replace("/[^a-zA-Z0-9\s]/", "", $text);
 
         // Challenge 2: Convert text to Title Case
             // Lowercase first to handle "mIxEd" cases correctly
