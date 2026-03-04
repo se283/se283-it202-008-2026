@@ -27,7 +27,7 @@ Requirements:
         </ul>
     </nav>
     <!-- Edit your UCID here -->
-    <header>Header Section (mt85)</header>
+    <header>Header Section (se283)</header>
     <!-- Don't make any other edits to the HTML -->
     <main>
         <div class="content">
@@ -58,4 +58,43 @@ Requirements:
 <style>
     /* You're free to make whatever edits you need here, just don't override anything in the styles.css */
     /* See the requirements at the top. If easier, you may copy/paste them here*/
+    /*
+    UCID: se283
+    Date: 3/3/2026 
+
+    Plan:
+    - Use 'flex' to stack the page sections like blocks in a tower.
+    - Lock the screen height so it doesn't grow taller than the window.
+    - Make the middle section (main) the only part that can scroll.
+    */
+
+    /* Sets up the "outer container" of the page */
+    body.challenge1 {
+        /* Make the page exactly the height of the screen */
+        height: 100vh;      
+        /* Remove the extra white space around the edges */
+        margin: 0;          
+        /* Arrange all children (nav, header, main, footer) in a vertical line */
+        display: flex;      
+        flex-direction: column; 
+        /* Hide the main browser scrollbar so the window stays still */
+        overflow: hidden;   
+    }
+
+    /* Protects the top and bottom sections */
+    nav, header, footer {
+        /* Prevent these sections from getting squished or resized */
+        flex-shrink: 0;     
+    }
+
+    /* This part handles the content (the green middle section) */
+    main {
+        /* Tell this section to stretch and fill all the empty space */
+        flex-grow: 1;       
+        /* If the text is too long, add a scrollbar inside this section only */
+        overflow-y: auto;   
+        /* A technical fix to make sure the scrollbar works correctly */
+        min-height: 0;      
+    }
+
 </style>
