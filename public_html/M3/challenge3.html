@@ -83,13 +83,20 @@ Requirements:
 
     Plan: 
     - CSS
-    1. Fix the header at the top.
-    2. Make the carousel take up the full width.
-    3. Ensure buttons are centered below the carousel.
-    4. Show only one panel at a time while sliding smoothly.
+    1. Set the header to a "fixed" position at the top of the screen so it stays in place while the page is used.
+    2. Make the carousel act like a window that is 100% wide and hide any content that moves outside of that window.
+    3. Place all panels side-by-side in one long horizontal row inside a single container.
+    4. Size each panel to be exactly the same width as the carousel window so only one panel is visible at a time.
+    5. Group the buttons in a navigation bar and center them horizontally below the carousel.
+    6. Use flexbox inside each panel to keep the text and lists perfectly centered both up-and-down and left-to-right.
     - JavaScript
-    1. Attach event listeners to the "Previous" and "Next" buttons.
-    2. Cycle through panels, looping when reaching the last or first one.
+    1. Identify the buttons and the panel container in the code to allow for interaction.
+    2. Create a counter starting at zero to keep track of which panel is currently on the screen. 
+    3. Attach listeners to the "Previous" and "Next" buttons to detect when they are clicked.
+    4. Use a math formula to update the counter so it jumps from the last panel back to the first, or from the first back to the last.
+    5. Move the panel row left or right by 100% for every change in the counter to bring the new panel into the window.
+    6. Apply a transition effect to make the movement look like a smooth slide instead of a sudden jump.
+    7. Record mouse positions at the start and end of a click to detect a "swipe" and trigger a slide change based on the drag distance.
     */
 
     document.addEventListener("DOMContentLoaded", function () {
