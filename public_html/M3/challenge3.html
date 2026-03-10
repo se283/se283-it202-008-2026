@@ -1,0 +1,222 @@
+<!--
+Challenge 3: Carousel Layout with Swiping
+-----------------------------------------
+Requirements:
+    Using CSS adjust the layout per the following rules
+    1. Header should be at the top
+    2. Carousel should take up full width
+    3. Buttons should be centered
+    Using JavaScript solve the following
+    1. Attach appropriate event listeners to each button
+    2. Cycle through each panel showing only 1 at a time
+    3. Ensure that the panels loop when reaching the last or first one
+    4. Extra credit: Allow mouse swipe on the carousel to cycle through the panels similar to how the buttons would work 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="challenge3">
+    <nav>
+        <ul>
+            <li><a href="challenge1.html">Challenge 1</a></li>
+            <li><a href="challenge2.html" >Challenge 2</a></li>
+            <li><a href="challenge3.html" class="active">Challenge 3</a></li>
+        </ul>
+    </nav>
+    <!-- Edit your UCID here -->
+    <header>Header Section (se283)</header>
+    <!-- Don't make any other edits to the HTML -->
+    <nav>
+        <button>Previous</button>
+        <button>Next</button>
+    </nav>
+
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="panel"><div>Panel 0:
+                <ul>
+                    <li>CSS Layout Requirements:
+                        <ul>
+                            <li>Header should be at the top</li>
+                            <li>Carousel should take up full width</li>
+                            <li>Buttons should be centered</li>
+                            <li>Carousel panels should fill the full height of the carousel</li>
+                            <li>Carousel content should be centered (vertical and horizontal)</li>
+                        </ul>
+                    </li>
+                    <li>JavaScript Functionality Requirements:
+                        <ul>
+                            <li>Attach appropriate event listeners to each button</li>
+                            <li>Cycle through each panel showing only 1 at a time</li>
+                            <li>Ensure that the panels loop when reaching the last or first one</li>
+                            <li>Extra credit: Allow mouse swipe on the carousel to cycle through the panels similar to how the buttons would work</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+            <div class="panel"><div>Panel 1: HTML Forms</div></div>
+            <div class="panel"><div>Panel 2: CSS Grid</div></div>
+            <div class="panel"><div>Panel 3: JavaScript Events</div></div>
+            <div class="panel"><div>Panel 4: Responsive Design</div></div>
+            <div class="panel"><div>Panel 5: Accessibility Best Practices</div></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="util.js"></script>
+
+<script>
+    /* Solve the button logic here by finding and attaching an appropriate event listener and logic*/
+    /*
+    UCID: se283 
+    Date: 3/5/26
+
+    Plan: 
+    - CSS
+    1. Set the header to a "fixed" position at the top of the screen so it stays in place while the page is used.
+    2. Make the carousel act like a window that is 100% wide and hide any content that moves outside of that window.
+    3. Place all panels side-by-side in one long horizontal row inside a single container.
+    4. Size each panel to be exactly the same width as the carousel window so only one panel is visible at a time.
+    5. Group the buttons in a navigation bar and center them horizontally below the carousel.
+    6. Use flexbox inside each panel to keep the text and lists perfectly centered both up-and-down and left-to-right.
+    - JavaScript
+    1. Identify the buttons and the panel container in the code to allow for interaction.
+    2. Create a counter starting at zero to keep track of which panel is currently on the screen. 
+    3. Attach listeners to the "Previous" and "Next" buttons to detect when they are clicked.
+    4. Use a math formula to update the counter so it jumps from the last panel back to the first, or from the first back to the last.
+    5. Move the panel row left or right by 100% for every change in the counter to bring the new panel into the window.
+    6. Apply a transition effect to make the movement look like a smooth slide instead of a sudden jump.
+    7. Record mouse positions at the start and end of a click to detect a "swipe" and trigger a slide change based on the drag distance.
+    */
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Identifying the HTML elements needed for control
+        const container = document.querySelector(".carousel-container");
+        const panels = document.querySelectorAll(".panel");
+        // This targets the specific buttons inside the second navigation bar
+        const [prevBtn, nextBtn] = document.querySelectorAll(".challenge3 > nav button");
+        
+        let currentIndex = 0; // The starting position of the carousel
+        const totalPanels = panels.length; // The total count of panels available
+
+        // The function that calculates the visual movement
+        function updateCarousel() {
+            // The container slides left by 100% multiplied by the current index
+            // This ensures exactly one panel stays in the center of the view
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Logic for the "Previous" button
+        prevBtn.addEventListener("click", () => {
+            // The index decreases by 1. If it goes below 0, it wraps to the last panel
+            currentIndex = (currentIndex - 1 + totalPanels) % totalPanels;
+            updateCarousel();
+        });
+
+        // Logic for the "Next" button
+        nextBtn.addEventListener("click", () => {
+            // The index increases by 1. If it passes the last panel, it wraps to 0
+            currentIndex = (currentIndex + 1) % totalPanels;
+            updateCarousel();
+        });
+
+        // Extra Credit: Mouse Swipe detection
+        let startX = 0; // Stores the horizontal coordinate where a click begins
+        let isDragging = false; // Tracks if the mouse button is currently held down
+
+        // Captures the mouse position when the user clicks the carousel
+        container.addEventListener("mousedown", (e) => {
+            startX = e.pageX;
+            isDragging = true;
+        });
+
+        // Calculates the swipe distance when the mouse button is released
+        window.addEventListener("mouseup", (e) => {
+            if (!isDragging) return; 
+            isDragging = false;
+            
+            const endX = e.pageX;
+            const diff = startX - endX;
+
+            // A movement of more than 50 pixels triggers a slide change
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    // Moving the mouse to the left increases the index
+                    currentIndex = (currentIndex + 1) % totalPanels;
+                } else {
+                    // Moving the mouse to the right decreases the index
+                    currentIndex = (currentIndex - 1 + totalPanels) % totalPanels;
+                }
+                updateCarousel();
+            }
+        });
+    });
+</script>
+
+<style>
+    /* You're free to make whatever edits you need here, just don't override anything in the styles.css */
+
+    /* Sets the body to fill the full height of the browser window */
+    body.challenge3 {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        height: 100vh;
+    }
+
+    /* Positions the header at the very top of the layout */
+    header {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        z-index: 10;
+    }
+
+    /* Centers the navigation buttons horizontally */
+    .challenge3 > nav {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 15px;
+        background-color: #d3d3d3 !important; 
+    }
+
+    /* The carousel area acts as a window that hides content outside its borders */
+    .carousel {
+        flex-grow: 1; /* This expands the carousel to fill available vertical space */
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        cursor: grab;
+    }
+
+    /* The container holds all panels in a single horizontal row */
+    .carousel-container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        /* This creates a smooth sliding animation over 0.5 seconds */
+        transition: transform 0.5s ease-in-out;
+    }
+
+    /* Individual panels expand to fill the entire carousel window */
+    .panel {
+        min-width: 100%;
+        height: 100%;
+        display: flex !important;
+        /* Content inside the panel is centered both vertically and horizontally */
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+</style>
