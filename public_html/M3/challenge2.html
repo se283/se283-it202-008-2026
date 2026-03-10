@@ -36,7 +36,7 @@ Requirements:
         </ul>
     </nav>
     <!-- Edit your UCID here -->
-    <header>Header Section (mt85)</header>
+    <header>Header Section (se283)</header>
     <!-- Don't make any other edits to the HTML -->
     <div class="container">
         <aside id="left-sidebar">
@@ -96,8 +96,101 @@ Requirements:
 
 <script>
     /* Solve the button logic here by finding and attaching an appropriate event listener and logic*/
-</script>
+    /*
+    UCID: se283 
+    Date: 3/5/26
+
+    Plan: 
+    - CSS
+    1. Fix the header at the top.
+    2. Ensure content takes up the remaining height.
+    3. Make the sidebars 15% wide and dock them to the left and right.
+    4. Make the main content take the remaining space.
+    - JavaScript
+    1. Attach event listeners to the sidebar buttons.
+    2. Toggle the respective sidebar between collapsed and uncollapsed.
+    3. Adjust the main content width dynamically.
+    */
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Find the sidebar elements and their buttons in the HTML
+    const leftSidebar = document.getElementById("left-sidebar");
+    const rightSidebar = document.getElementById("right-sidebar");
+    const leftButton = leftSidebar.querySelector("button");
+    const rightButton = rightSidebar.querySelector("button");
+
+    // Create a function that handles the shrinking and growing
+    function toggleSidebar(sidebar) {
+        // This adds or removes the "collapsed" CSS class every time the "collapse" button is clicked
+        sidebar.classList.toggle("collapsed");
+        
+        // The button text changes based on whether the sode bat is collapsed or not so the arrow points the right way
+        const btn = sidebar.querySelector("button");
+        if (sidebar.classList.contains("collapsed")) {
+            // If it's small, change the arrow to point "open"
+            btn.innerText = sidebar.id === "left-sidebar" ? ">" : "<";
+        } else {
+            // If it's big, change the arrow to point "close"
+            btn.innerText = sidebar.id === "left-sidebar" ? "<" : ">";
+        }
+    }
+
+    // Attaching the "click" event listeners to the buttons
+    leftButton.addEventListener("click", () => toggleSidebar(leftSidebar));
+    rightButton.addEventListener("click", () => toggleSidebar(rightSidebar));
+});
+</script> 
 
 <style>
     /* You're free to make whatever edits you need here, just don't override anything in the styles.css */
+    /* Put the header at the very top */
+    body.challenge2 {
+        display: flex;
+        flex-direction: column; /* Stack header on top of the container */
+        height: 100vh; /* Make the page fill the whole screen height */
+        margin: 0;
+    }
+
+    header {
+        height: 60px; /* Give the header a set size */
+        flex-shrink: 0; /* Prevent the header from getting squished */
+    }
+
+    /* The container takes up all the leftover height */
+    .container {
+        display: flex; /* Lay out sidebars and main content side-by-side */
+        flex: 1; 
+        overflow: hidden; /* Prevent the whole page from scrolling weirdly */
+    }
+
+    /* Sidebars start at 15% width */
+    #left-sidebar, #right-sidebar {
+        width: 15%; 
+        transition: width 0.3s ease; /* Make the shrinking look smooth */
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* Main content uses all remaining space */
+    main.content {
+        flex: 1; /* This tells the middle to grow to fill any gaps */
+        overflow-y: auto; /* Let only the text area scroll if it's long */
+    }
+
+    /* When the 'collapsed' class is added via JS */
+    .collapsed {
+        width: 50px !important; /* Shrink the sidebar to just fit the button */
+    }
+
+    .collapsed ul {
+        display: none; /* Hide the list items so they don't look messy while small */
+    }
+
+    /* Keep buttons at the top of their sidebars */
+    #left-sidebar button, #right-sidebar button {
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
 </style>
