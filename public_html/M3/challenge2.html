@@ -113,32 +113,32 @@ Requirements:
     */
 
     document.addEventListener("DOMContentLoaded", function() {
-    // Find the sidebar elements and their buttons in the HTML
-    const leftSidebar = document.getElementById("left-sidebar");
-    const rightSidebar = document.getElementById("right-sidebar");
-    const leftButton = leftSidebar.querySelector("button");
-    const rightButton = rightSidebar.querySelector("button");
+        // Find the sidebar elements and their buttons in the HTML
+        const leftSidebar = document.getElementById("left-sidebar");
+        const rightSidebar = document.getElementById("right-sidebar");
+        const leftButton = leftSidebar.querySelector("button");
+        const rightButton = rightSidebar.querySelector("button");
 
-    // Create a function that handles the shrinking and growing
-    function toggleSidebar(sidebar) {
-        // This adds or removes the "collapsed" CSS class every time the "collapse" button is clicked
-        sidebar.classList.toggle("collapsed");
-        
-        // The button text changes based on whether the sode bat is collapsed or not so the arrow points the right way
-        const btn = sidebar.querySelector("button");
-        if (sidebar.classList.contains("collapsed")) {
-            // If it's small, change the arrow to point "open"
-            btn.innerText = sidebar.id === "left-sidebar" ? ">" : "<";
-        } else {
-            // If it's big, change the arrow to point "close"
-            btn.innerText = sidebar.id === "left-sidebar" ? "<" : ">";
+        // Create a function that handles the shrinking and growing
+        function toggleSidebar(sidebar) {
+            // This adds or removes the "collapsed" CSS class every time the "collapse" button is clicked
+            sidebar.classList.toggle("collapsed");
+            
+            // The button text changes based on whether the sode bat is collapsed or not so the arrow points the right way
+            const btn = sidebar.querySelector("button");
+            if (sidebar.classList.contains("collapsed")) {
+                // If it's small, change the arrow to point "open"
+                btn.innerText = sidebar.id === "left-sidebar" ? ">" : "<";
+            } else {
+                // If it's big, change the arrow to point "close"
+                btn.innerText = sidebar.id === "left-sidebar" ? "<" : ">";
+            }
         }
-    }
 
-    // Attaching the "click" event listeners to the buttons
-    leftButton.addEventListener("click", () => toggleSidebar(leftSidebar));
-    rightButton.addEventListener("click", () => toggleSidebar(rightSidebar));
-});
+        // Attaching the "click" event listeners to the buttons
+        leftButton.addEventListener("click", () => toggleSidebar(leftSidebar));
+        rightButton.addEventListener("click", () => toggleSidebar(rightSidebar));
+    });
 </script> 
 
 <style>
