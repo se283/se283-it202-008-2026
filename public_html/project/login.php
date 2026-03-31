@@ -35,8 +35,8 @@ if (isset($_POST["email"], $_POST["password"])) {
         $hasError = true;
     }
     // Sanitize and validate email
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $email = sanitize_email($email);
+    if (!is_valid_email($email)) {
         echo "Invalid email address";
         $hasError = true;
     }
@@ -65,7 +65,7 @@ if (isset($_POST["email"], $_POST["password"])) {
                         $hash = $user["password"];
                         unset($user["password"]);
                         if (password_verify($password, $hash)) {
-                            echo "Welcome, $email!<br>";
+                            //echo "Welcome, $email!<br>";
                             $_SESSION["user"] = $user; // add the data to the active session
                             die(header("Location: landing.php"));
                         } else {
