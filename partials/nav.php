@@ -9,7 +9,7 @@ if (strpos($domain, ":")) {
     // strip the port number if present
     $domain = explode(":", $domain)[0];
 }
-// used for public hosting like heroku/render.com
+// used for public hosting like heroku
 if ($domain != "localhost") {
     session_set_cookie_params([
         "lifetime" => 60 * 60, // this is cookie lifetime, not session lifetime
@@ -21,14 +21,14 @@ if ($domain != "localhost") {
     ]);
 }
 session_start();
-require(__DIR__."/../lib/functions.php"); 
+require(__DIR__."/../lib/functions.php");
 ?>
 <nav>
     <ul>
-        <!-- new content below -->
-        <?php if (is_logged_in()) : ?> 
-            <li><a href="home.php">Home</a></li>
-        <?php endif; ?> 
+        <?php if (is_logged_in()) : ?>
+            <li><a href="landing.php">Landing</a></li>
+            <li><a href="profile.php">Profile</a></li>
+        <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="login.php">Login</a></li>
             <li><a href="register.php">Register</a></li>
