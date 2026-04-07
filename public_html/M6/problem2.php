@@ -30,7 +30,33 @@ function processCars($cars) {
     $processedCars = []; // result array
     $classic_age = 25; // don't change this value
     // Start edits
-   
+    /*
+    UCID: se283
+    Date: 4/2/2026
+
+    Plan: 
+    - Determine the current year using the date() function
+    - Loop through each car in the $cars array
+    - Calculate 'age' by subtracting 'year' from 'currentYear'
+    - Compare 'age' to 'classic_age' to set the 'isClassic' boolean
+    - Push the modified car data into the $processedCars array
+
+     */
+
+    $currentYear = (int)date("Y"); 
+    // standard PHP way to get the 4-digit year. Casting it to (int) to make sure math is being down with numbers instead of strings.
+    
+    foreach ($cars as $car) {
+        $age = $currentYear - $car["year"];
+        
+        // Add new properties to the existing car array
+        $car["age"] = $age;
+        $car["isClassic"] = ($age >= $classic_age);
+        
+        // Append to $processedCars
+        $processedCars[] = $car;
+    }
+
     // End edits
     echo "<pre>" . var_export($processedCars, true) . "</pre>";
     
