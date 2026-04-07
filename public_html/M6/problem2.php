@@ -55,7 +55,7 @@ function processCars($cars) {
         
         // Append to $processedCars
         $processedCars[] = $car;
-    }
+    } 
 
     // End edits
     echo "<pre>" . var_export($processedCars, true) . "</pre>";
