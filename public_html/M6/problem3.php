@@ -50,7 +50,37 @@ function joinArrays($users, $activities) {
     // TODO Objective: Add logic to join both arrays on the userId property into one $joined array
     $joined = []; // result array
     // Start edits
-    
+    /*
+    UCID: se283
+    Date: 4/2/2026
+
+    Plan: 
+    - Create a temporary lookup map for activities using userId as the key.
+    - Loop through the users array.
+    - For each user, check if their userId exists in the activity map.
+    - Merge the user data and activity data into a new array.
+    - Push the merged result into the $joined array
+
+     */
+
+    // 1. Create an associative map of activities for O(1) lookup
+    $activityMap = [];
+    foreach ($activities as $act) {
+        $activityMap[$act['userId']] = $act['activity'];
+    }
+
+    // 2. Iterate through users and join the data
+    foreach ($users as $user) {
+        $id = $user['userId'];
+        
+        // Combine the user array with the activity if it exists
+        $mergedEntry = $user;
+        if (isset($activityMap[$id])) {
+            $mergedEntry['activity'] = $activityMap[$id];
+        }
+        
+        $joined[] = $mergedEntry;
+    }
 
     // End edits
     echo "<pre>" . var_export($joined, true) . "</pre>";
