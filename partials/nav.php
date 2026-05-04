@@ -9,6 +9,7 @@ if (strpos($domain, ":")) {
     // strip the port number if present
     $domain = explode(":", $domain)[0];
 }
+require(__DIR__."/../lib/functions.php");
 // used for public hosting like heroku
 if ($domain != "localhost") {
     session_set_cookie_params([
@@ -21,7 +22,7 @@ if ($domain != "localhost") {
     ]);
 }
 session_start();
-require(__DIR__."/../lib/functions.php");
+
 ?>
 <link rel="stylesheet" href="<?php get_url('styles.css', true);?>">
 <script src="<?php get_url('helpers.js', true);?>"></script>
