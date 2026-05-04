@@ -1,4 +1,9 @@
 <?php
+/*
+UCID: se283
+Date: 5/2/2026
+*/
+
 require_once(__DIR__ . "/../../partials/nav.php");
 if (!is_logged_in()) {
     die(header("Location: login.php"));
@@ -148,6 +153,10 @@ if (isset($_POST["currentPassword"], $_POST["newPassword"], $_POST["confirmPassw
 }
 ?>
 <h3>Profile</h3>
+<!-- 
+UCID: se283
+Date: 5/2/2026
+-->
 <form method="POST" onsubmit="return validate(this);">
     <div class="mb-3">
         <label for="email">Email</label>

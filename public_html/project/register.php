@@ -1,4 +1,9 @@
 <?php
+/*
+UCID: se283
+Date: 5/2/2026
+*/
+
 require(__DIR__ . "/../../partials/nav.php");
 ?>
 <h3>Register</h3>
@@ -72,7 +77,7 @@ if (isset($_POST["email"], $_POST["password"], $_POST["confirm"], $_POST["userna
     if (!is_valid_confirm($password, $confirm)) {
         flash("Passwords must match.", "danger");
         $hasError = true;
-    }
+    } 
 
     if (!$hasError) {
         // TODO 4: Hash password and store record in DB
