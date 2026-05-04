@@ -1,4 +1,8 @@
 <?php
+/*
+UCID: se283
+Date: 5/2/2026
+*/
 ob_start();// Temp fix to resolve output buffer issues that send the header() early that cause issues with the header("Location:...") below
 require(__DIR__ . "/../../partials/nav.php");
 ?>
@@ -23,6 +27,10 @@ require(__DIR__ . "/../../partials/nav.php");
     }
 </script>
 <?php
+/*
+UCID: se283
+Date: 5/2/2026
+*/
 //TODO 2: add PHP Code
 if (isset($_POST["email"], $_POST["password"])) {
     // still leveraging the property as "email", but it can be a username
