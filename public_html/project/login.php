@@ -22,8 +22,17 @@ require(__DIR__ . "/../../partials/nav.php");
     function validate(form) {
         //TODO 1: implement JavaScript validation (you'll do this on your own towards the end of Milestone1)
         //ensure it returns false for an error and true for success
-
-        return true;
+        function validate(form) {
+                    //TODO 1: implement JavaScript validation (you'll do this on your own towards the end of Milestone1)
+                    //ensure it returns false for an error and true for success
+                    let isValid = true;
+                    let pw = form.password.value;
+                    if (!isValidPassword(pw)) {
+                        flash("Password must be at least 8 characters", "warning");
+                        isValid = false;
+                    }
+                    return isValid;
+                }
     }
 </script>
 <?php
