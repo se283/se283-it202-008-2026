@@ -5,6 +5,10 @@
  * @param string $destination The destination to redirect to if not logged in (relative to BASE_PATH or absolute).
  * @return bool True if the user is logged in, false otherwise.
  */
+/*
+UCID: se283
+Date: 5/4/2026
+*/
 function is_logged_in($redirect = false, $destination = "login.php")
 {
     $isLoggedIn = isset($_SESSION["user"]);

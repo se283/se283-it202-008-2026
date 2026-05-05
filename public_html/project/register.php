@@ -30,8 +30,16 @@ require(__DIR__ . "/../../partials/nav.php");
     function validate(form) {
         //TODO 1: implement JavaScript validation (you'll do this on your own towards the end of Milestone1)
         //ensure it returns false for an error and true for success
-
-        return true;
+        /*
+        UCID: se283
+        Date: 5/2/2026
+        */
+        let isValid = true;
+        if (!isValidPassword(form.password.value)) {
+            isValid = false;
+            flash("Password must be at least 8 characters long", "danger");
+        }
+        return isValid;
     }
 </script>
 <?php
